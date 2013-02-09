@@ -55,6 +55,22 @@ T getvalue(std::string key, T defaultValue) {
 	return getvalue<T>(key);
 }
 
+template < typename T>
+T getvalueidx(std::string key,int idx, T defaultValue) {
+	std::stringstream ss;
+	ss << idx;
+		std::string query=key+std::string("[")+ss.str()+std::string("]");
+	return getvalue<T>(query,defaultValue);
+}
+
+template < typename T>
+T getvalueidx(std::string key,int idx) {
+	std::stringstream ss;
+	ss << idx;
+	std::string query=key+std::string("[")+ss.str()+std::string("]");
+	return getvalue<T>(query);
+}
+
 private:
 
 std::map<std::string,std::string> datamap;
