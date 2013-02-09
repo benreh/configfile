@@ -26,7 +26,10 @@
 
 class ConfigFile {
 public:
-ConfigFile(std::string myfilename);
+ConfigFile(std::string filename);
+ConfigFile();
+bool load(std::string filename);
+
 ~ConfigFile();
 void dump(void);
 

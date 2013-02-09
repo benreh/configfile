@@ -40,13 +40,17 @@ std::string trim(std::string const& source, char const* delims = " \t\r\n") {
 }
 
 
-ConfigFile::ConfigFile(string myfilename) {
-	filename=myfilename;
+ConfigFile::ConfigFile() { }
+ConfigFile::ConfigFile(string filename) {
+	if(!load(filename))
+		cerr << "Configfile '" << filename << "' not found!" << endl;
+}
+bool ConfigFile::load(string filename) {
+	this->filename=filename;
 	fstream f;
 	f.open(filename.c_str(),fstream::in);
 	if (!f.is_open())	{
-		cerr << "Configfile '" << myfilename << "' not found!" << endl;
-		return;
+		return false;
 	}
 	string line;
 	int lnr=-1;
@@ -75,7 +79,8 @@ ConfigFile::ConfigFile(string myfilename) {
 		}
 		datamap[key]=value;
 	 }
-	f.close();	
+	f.close();
+	return true;
 }
 
 void ConfigFile::dump(void) {
