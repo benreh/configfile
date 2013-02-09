@@ -30,7 +30,6 @@ ConfigFile(std::string myfilename);
 ~ConfigFile();
 void dump(void);
 
-
 template < typename T>
 T getvalue(std::string key) {
 	std::string str = datamap[key];
@@ -43,6 +42,16 @@ T getvalue(std::string key) {
 	ss >> value;
 	return value;	
 }
+
+template < typename T>
+T getvalue(std::string key, T defaultValue) {
+	std::string str = datamap[key];
+	if (str=="") {
+		return defaultValue;
+	}
+	return getvalue<T>(key);
+}
+
 private:
 
 std::map<std::string,std::string> datamap;

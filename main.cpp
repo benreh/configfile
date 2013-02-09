@@ -27,5 +27,6 @@ int main () {
 	cout << cfg.getvalue<float>("number") << endl;
 	cout << cfg.getvalue<int>("number") << endl;
 	cout << cfg.getvalue<int>("notThere") << endl;
+	cout << cfg.getvalue<int>("notThere",5) << endl;
 	return 0;
 }
